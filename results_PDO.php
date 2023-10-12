@@ -50,7 +50,7 @@ class TableRows extends RecursiveIteratorIterator {
 
 //Realiza la conexxipon a la DB mediante PDO
 try {
-  $conn = new PDO("sqlsrv:server=$servername;database=$dbname", $username, $password);
+  $conn = new PDO("sqlsrv:server=$servername, 1433;database=$dbname; encrypt=0; TrustServerCertificate=1", $username, $password);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
   $stmt = $conn->prepare("SELECT UI.Name, UI.lastname, ACCM.event_point_name, FORMAT(ACCM.time, 'dd/MM/yyyy') AS Fecha, FORMAT(ACCM.time, 'HH:mm:ss') AS Hora
